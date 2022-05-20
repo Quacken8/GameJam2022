@@ -2,3 +2,21 @@ gejmový džem 2022
 
 linuxácký executable je JameGam.x86_64
 windowsácká             JameGam.exe
+
+/*How to play*/
+Střílejte po sobě písmenka, který nasajete z titulků. Můžete mít ready až 10 písmen. 
+Střílením do oponenta mu snížíte životy. Když životy dosáhnou nuly nebo když vypadnete
+z obrazovky, přijdete o srdíčko a začnete se respawnovat. Tehdy jste nezranitelní a po
+uběhnutí určitého intervalu zraníte vše kolem sebe a můžete dál bojovat.
+Poslední, komu zbudou srdíčka,vyhrál.
+
+/*Controls*/
+Player 1 
+pohyb             WASD
+střílení          TFGH
+nasávání písmen   mezerník
+
+Player 2 
+pohyb             šipky
+střílení          8456
+nasávání písmen   0
