@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://LetterWall.gd" type="Script" id=1]
+[ext_resource path="res://Inconsolata.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 9 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+font_data = ExtResource( 2 )
+
+[node name="LetterWall" type="KinematicBody2D" groups=["Succable"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 1 )
+
+[node name="LetterCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 7, 9 )
+shape = SubResource( 1 )
+
+[node name="LetterLable" type="Label" parent="."]
+margin_top = -6.0
+margin_right = 14.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 2 )
+text = "A"
+align = 1
+valign = 1
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 7, 9 )
+scale = Vector2( 0.7, 0.9 )
+
+[node name="LetterDestroyTimer" type="Timer" parent="."]
+wait_time = 21.559
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="LetterDestroyTimer" to="." method="_on_LetterDestroyTimer_timeout"]

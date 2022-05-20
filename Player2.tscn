@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player2.gd" type="Script" id=1]
+[ext_resource path="res://dangerCircle1.png" type="Texture" id=2]
+[ext_resource path="res://dangerCircle2.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 77.4919
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 17.0
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "slowBeeps",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "fasterBeeps",
+"speed": 10.0
+} ]
+
+[node name="Player2" type="KinematicBody2D"]
+position = Vector2( -10, -20 )
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 20.0
+margin_bottom = 40.0
+color = Color( 0.313726, 0.309804, 0.803922, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 10, 20 )
+shape = SubResource( 1 )
+
+[node name="iframesTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="succTimer" type="Timer" parent="."]
+wait_time = 0.408
+
+[node name="SuccArea" type="Area2D" parent="."]
+
+[node name="SuccShape" type="CollisionShape2D" parent="SuccArea"]
+position = Vector2( 10, 20 )
+shape = SubResource( 2 )
+
+[node name="PickUpArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+position = Vector2( 10, 20 )
+shape = SubResource( 3 )
+
+[node name="ShotDelay" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="respawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 10, 20 )
+scale = Vector2( 0.255417, 0.255417 )
+frames = SubResource( 4 )
+animation = "slowBeeps"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 10, 20 )
+scale = Vector2( 1, 2 )
+
+[connection signal="timeout" from="iframesTimer" to="." method="_on_iframesTimer_timeout"]
+[connection signal="timeout" from="respawnTimer" to="." method="_on_respawnTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
