@@ -11,6 +11,8 @@ uběhnutí určitého intervalu zraníte vše kolem sebe a můžete dál bojovat
 Poslední, komu zbudou srdíčka,vyhrál.
 
 /*Controls*/
+quit              esc
+
 Player 1 
 pohyb             WASD
 střílení          TFGH
